@@ -65,19 +65,19 @@ for folder in listdir(location):
         print("Compilando o programa: '{}'".format(executeCompiled))
         try:
             subprocess.call(["gcc", source, "-o", locationCompiled])
+            output = run(executeCompiled, outputCompiled)
+            if correction:
+                print("Comparando a saída de dados com a correção.")
+                fileSourceOutput = open(outputCompiled, "r").read()
+                fileSourceOutputCheck = open(correction, "r").read()
+                equalsOutput = SequenceMatcher(None, fileSourceOutput, fileSourceOutputCheck).ratio()
+                if equalsOutput < 0.9:
+                    print(colored("   {} - {:.0f}% igual a resposta.".format(correction, (equals*100)), 'red'))
+                else:
+                    print(colored("   {} - RESPOSTA CORRETA!".format(correction), 'green'))
         except Exception as e:
              print(colored("   {} - ERRO NA COMPILAÇÃO!".format(sourceCheck), 'red'))
         print("Executando o programa e salvando a saída.")
-        output = run(executeCompiled, outputCompiled)
-        if correction:
-            print("Comparando a saída de dados com a correção.")
-            fileSourceOutput = open(outputCompiled, "r").read()
-            fileSourceOutputCheck = open(correction, "r").read()
-            equalsOutput = SequenceMatcher(None, fileSourceOutput, fileSourceOutputCheck).ratio()
-            if equalsOutput < 0.9:
-                print(colored("   {} - {:.0f}% igual a resposta.".format(correction, (equals*100)), 'red'))
-            else:
-                print(colored("   {} - RESPOSTA CORRETA!".format(correction), 'green'))
 
 print("Limpando a pasta temporária.")
 shutil.rmtree(extract, ignore_errors=True)
