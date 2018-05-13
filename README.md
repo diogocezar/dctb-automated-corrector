@@ -1,6 +1,8 @@
 ## Corretor Automático
 
-![Execução do Corretor Automático](https://raw.githubusercontent.com/diogocezar/dctb-files-equality/master/img/screen.png)
+<p align="center">
+  <img alt="Exemplo de Execução do Corretor Automático" src="https://raw.githubusercontent.com/diogocezar/dctb-files-equality/master/img/screen.png">
+</p>
 
 Olá, este é um programa simples para a correção automática de trabalhos.
 
