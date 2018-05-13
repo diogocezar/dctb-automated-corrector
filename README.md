@@ -1,6 +1,6 @@
 ## Corretor Automático
 
-![Execução do Corretor Automático](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![Execução do Corretor Automático](https://raw.githubusercontent.com/diogocezar/dctb-files-equality/master/img/screen.png)
 
 Olá, este é um programa simples para a correção automática de trabalhos.
 
