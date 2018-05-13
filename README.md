@@ -42,7 +42,7 @@ $python3 tester.py ./sample.zip result-check.txt
 
 Onde:
 
-    + __python3__ é o comando para executar o python
-    + __teste.py__ é o nome do script para executar os testes
-    + __./sample.zip__ é o nome do pack compactado
-    + __result-check.txt__ é o nome do arquivo gabarito que deverá ser compatilhado
++ __python3__ é o comando para executar o python
++ __teste.py__ é o nome do script para executar os testes
++ __./sample.zip__ é o nome do pack compactado
++ __result-check.txt__ é o nome do arquivo gabarito que deverá ser compatilhado
