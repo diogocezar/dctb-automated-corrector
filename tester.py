@@ -4,6 +4,7 @@ import zipfile
 import sys
 import os.path
 import shutil
+from termcolor import colored
 
 args = sys.argv
 extract = './tmp'
@@ -43,5 +44,7 @@ for folder in listdir(location):
                 fileSource = open(source, "r").read()
                 fileSourceCheck = open(sourceCheck, "r").read()
                 equals = SequenceMatcher(None, fileSource, fileSourceCheck).ratio()
-                if equals > 0.4:
+                if equals > 0.6:
                     print("O arquivo {} é {} parecido com o arquivo {}".format(source, equals, sourceCheck))
+                else
+                    print(colored('OK', 'green'))
