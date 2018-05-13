@@ -44,7 +44,6 @@ print("Recuperando arquivos de '{}'".format(location))
 
 for folder in listdir(location):
     if folder != '.DS_Store':
-        print("Analizando os arquivos de '{}'".format(location))
         locationInside = location + '/' + folder
         source = locationInside + '/' + listdir(locationInside)[0]
         print("Análise de similaridade para {}".format(locationInside))
@@ -76,7 +75,7 @@ for folder in listdir(location):
             fileSourceOutputCheck = open(correction, "r").read()
             equalsOutput = SequenceMatcher(None, fileSourceOutput, fileSourceOutputCheck).ratio()
             if equalsOutput < 0.9:
-                print(colored("   {} - {:.0f}% igual a resposta.".format(fileSourceOutput, (equals*100)), 'red'))
+                print(colored("   {} - {:.0f}% igual a resposta.".format(correction, (equals*100)), 'red'))
             else:
                 print(colored("   {} - RESPOSTA CORRETA!".format(correction), 'green'))
 

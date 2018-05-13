@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 int main(){
-	int cont=0;
+	int cont=4;
 	do{
 		printf("%d\n", cont);
 		cont++;
-	}while(cont < 10);
+	}while(cont < 16);
 	return 0;
 }
