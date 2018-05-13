@@ -45,6 +45,6 @@ for folder in listdir(location):
                 fileSourceCheck = open(sourceCheck, "r").read()
                 equals = SequenceMatcher(None, fileSource, fileSourceCheck).ratio()
                 if equals > 0.6:
-                    print("O arquivo {} é {} parecido com o arquivo {}".format(source, equals, sourceCheck))
-                else
+                    print(colored("O arquivo {} é {:.2f}% parecido com o arquivo {}".format(source, equals, sourceCheck), 'red'))
+                else:
                     print(colored('OK', 'green'))
