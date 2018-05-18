@@ -6,6 +6,7 @@ import os.path
 import shutil
 from termcolor import colored
 import subprocess
+from slugify import slugify
 
 def run(cmd, logfile):
     file = open(logfile,"w")
@@ -24,7 +25,8 @@ if len(args) < 2:
 file = args[1]
 (name,ext) = os.path.splitext(file)
 
-correction = args[2];
+if len(args) > 2:
+    correction = args[2];
 
 if not os.path.isfile(file):
     print("O arquivo passado como parâmetro '{}' não existe.".format(file))
@@ -40,6 +42,14 @@ zipRef.close()
 
 location = extract + '/' + name.replace('./', '')
 
+print("Normalizando os nomes das pastas.")
+for folder in listdir(location):
+    if folder != '.DS_Store':
+        locationInside = location + '/' + folder
+        newFolderName = slugify(folder)
+        newLocationInside = location + '/' + newFolderName
+        os.rename(locationInside, newLocationInside)
+
 print("Recuperando arquivos de '{}'".format(location))
 
 for folder in listdir(location):
@@ -51,13 +61,16 @@ for folder in listdir(location):
             if folderCheck != '.DS_Store' and folder != folderCheck:
                 locationCheck = location + '/' + folderCheck
                 sourceCheck = locationCheck + '/' + listdir(locationCheck)[0]
-                fileSource = open(source, "r").read()
-                fileSourceCheck = open(sourceCheck, "r").read()
-                equals = SequenceMatcher(None, fileSource, fileSourceCheck).ratio()
-                if equals > 0.9:
-                    print(colored("   {} - {:.0f}% igual.".format(sourceCheck, (equals*100)), 'red'))
-                else:
-                    print(colored("   {} - OK!".format(sourceCheck), 'green'))
+                try:
+                    fileSource = open(source, "r").read()
+                    fileSourceCheck = open(sourceCheck, "r").read()
+                    equals = SequenceMatcher(None, fileSource, fileSourceCheck).ratio()
+                    if equals > 0.5:
+                        print(colored("   {} - {:.0f}% igual.".format(sourceCheck, (equals*100)), 'red'))
+                    else:
+                        print(colored("   {} - OK!".format(sourceCheck), 'green'))
+                except Exception as e:
+                    print(colored("   {} - ERRO DE VERIFICAÇÃO".format(sourceCheck), 'red'))
         print("Executando a compilação do programa.")
         locationCompiled = locationInside + "/result.out"
         executeCompiled = "./" + locationCompiled
